@@ -30,9 +30,35 @@ exports.register = (server, options, next) => {
     }
   });
 
+  // TODO: Turn this into a permaredirect 30whatever
   server.route({
     method: 'GET',
     path: '/quote/{id}',
+    config: {
+      handler: (request, reply) => {
+        Quote.findOne({_id: request.params.id}).then(foundQuote => {
+          let baseTextSize = 50;
+          let modifier = Math.ceil(foundQuote.quote.length / 50);
+          baseTextSize -= modifier;
+          reply.view('quote/view', {
+            quote: foundQuote.quote,
+            background: foundQuote.background,
+            author: foundQuote.author,
+            textSize1: baseTextSize,
+            textSize2: Math.max(baseTextSize * 0.6, 20),
+            textSize3: Math.max(baseTextSize * 0.4, 20)
+          });
+        }, err => {
+          server.log(['error'], err);
+          reply.view('errors/404', {message: 'Quote Not Found'});
+        });
+      }
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/q/{id}',
     config: {
       handler: (request, reply) => {
         Quote.findOne({_id: request.params.id}).then(foundQuote => {
@@ -83,7 +109,7 @@ exports.register = (server, options, next) => {
         let saveQuery = newQuote.save();
 
         saveQuery.then(savedQuote => {
-          reply.redirect(`/quote/${savedQuote._id}`);
+          reply.redirect(`/q/${savedQuote._id}`);
         }, err => {
           server.log(['error'], err);
           reply.view('quote/create', {error: 'Unable to save to database. Please report issue to https://github.com/asilluron/quote-linker/issues'});
