@@ -61,7 +61,7 @@ exports.register = (server, options, next) => {
     config: {
       validate: {
         payload: {
-          quote: Joi.string().min(3).max(500),
+          quote: Joi.string().min(3).max(1000),
           author: Joi.string().min(3).max(100),
           background: Joi.string().uri({
             scheme: [
