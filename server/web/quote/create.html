@@ -7,6 +7,9 @@
     <div class="row">
       <div class="col-sm-12 text-center">
       <h2>Create a new linkable quote</h2>
+      {{#if error}}
+        <div class="alert alert-danger" role="alert">{{error}}</div>
+      {{/if}}
       </div>
     </div>
     <form action="/create" method="post">

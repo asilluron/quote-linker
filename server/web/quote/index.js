@@ -1,5 +1,6 @@
 'use strict';
 const shortid = require('shortid');
+const Joi = require('joi');
 
 exports.register = (server, options, next) => {
   const mongoose = server.methods.mongoose();
@@ -58,6 +59,18 @@ exports.register = (server, options, next) => {
     method: 'POST',
     path: '/create',
     config: {
+      validate: {
+        payload: {
+          quote: Joi.string().min(3).max(500),
+          author: Joi.string().min(3).max(100),
+          background: Joi.string().uri({
+            scheme: [
+              'http',
+              'https'
+            ]
+          })
+        }
+      },
       handler: (request, reply) => {
         let newQuote = new Quote({
           quote: request.payload.quote,
@@ -73,7 +86,7 @@ exports.register = (server, options, next) => {
           reply.redirect(`/quote/${savedQuote._id}`);
         }, err => {
           server.log(['error'], err);
-          reply.view('error/index', {error: 'Unable to save to database. Please report issue to https://github.com/asilluron/quote-linker/issues'});
+          reply.view('quote/create', {error: 'Unable to save to database. Please report issue to https://github.com/asilluron/quote-linker/issues'});
         });
       }
     }
