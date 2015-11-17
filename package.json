@@ -1,0 +1,46 @@
+{
+  "name": "quote-linker",
+  "version": "0.0.0",
+  "description": "Sample Node App for Creating Elegant Linkable Quotes",
+  "main": "server.js",
+  "scripts": {
+    "dev": "NODE_ENV=test PORT=8888 foreman start -f Procfile_dev",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asilluron/quote-linker.git"
+  },
+  "keywords": [
+    "Quotes",
+    "linker",
+    "quote",
+    "elegant",
+    "node",
+    "hapi",
+    "twitter"
+  ],
+  "author": "Andrew Silluron",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/asilluron/quote-linker/issues"
+  },
+  "homepage": "https://github.com/asilluron/quote-linker#readme",
+  "dependencies": {
+    "confidence": "^1.4.2",
+    "glue": "^2.4.0",
+    "handlebars": "^4.0.4",
+    "hapi": "^11.1.1",
+    "hapi-mongoose": "^0.4.0",
+    "inert": "^3.2.0",
+    "mongoose": "^4.2.6",
+    "shortid": "^2.2.4",
+    "vision": "^4.0.1"
+  },
+  "devDependencies": {
+    "bootstrap": "twbs/bootstrap#v4.0.0-alpha",
+    "gulp": "^3.9.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-sass": "^2.1.0"
+  }
+}

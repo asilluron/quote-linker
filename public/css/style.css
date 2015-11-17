@@ -1,0 +1,27 @@
+body {
+  background-color: #F9F2E7;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url(http://i.imgur.com/uR2Uq0D.jpg); }
+  @media (max-width: 47.9em) {
+    body {
+      background-size: cover; } }
+
+.controls {
+  margin-top: 70px; }
+  .controls a {
+    font-size: 38px; }
+
+.headline {
+  text-align: center; }
+
+h1 {
+  font-size: 180px;
+  font-weight: normal; }
+  @media (max-width: 74.9em) {
+    h1 {
+      font-size: 120px; } }
+  @media (max-width: 47.9em) {
+    h1 {
+      font-size: 65px; } }
